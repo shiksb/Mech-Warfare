@@ -6,10 +6,9 @@ import time
 pygame.init()
 pygame.joystick.init()
 
-
 ### Tells the number of joysticks/error detection
 joystick_count = pygame.joystick.get_count()
-print ("There is ", joystick_count, "joystick/s")
+print "Number of joysticks detected: ", joystick_count
 if joystick_count == 0:
     print ("Error, I did not find any joysticks")
 else:
@@ -36,10 +35,6 @@ def readPacket():
     else:
         return -1
 
-#def joy():
-#   pygame.event.pump()
-#   return [j.get_axis(0),j.get_axis(1), j.get_button(0)]
-
 def updateAxes():
     pygame.event.pump()
 
@@ -50,13 +45,15 @@ def updateAxes():
     aAxis = my_joystick.get_axis(2)
     bAxis = my_joystick.get_axis(3) * -1
 
-    if xAxis < 0.05 and xAxis > -0.05:
+    deadband = 0.2
+
+    if xAxis < deadband and xAxis > -deadband:
         xAxis = 0
-    if yAxis < 0.05 and yAxis > -0.05:
+    if yAxis < deadband and yAxis > -deadband:
         yAxis = 0
-    if aAxis < 0.05 and aAxis > -0.05:
+    if aAxis < deadband and aAxis > -deadband:
         aAxis = 0
-    if bAxis < 0.05 and bAxis > -0.05:
+    if bAxis < deadband and bAxis > -deadband:
         bAxis = 0
 
     xAxis = math.ceil(xAxis*10000)/10000
@@ -117,28 +114,4 @@ def updateButtons():
 
     return buttonDict
 
-# s=serial.Serial(port="COM0", baudrate=38400)
-while(1):
-    axisDict = updateAxes()
-    buttonDict = updateButtons()
-    time.sleep(2);
-    
-    # bumperValue = 0
-    # if buttonDict['leftTrigger'] == 1:
-    #     bumperValue = 1
-    # elif buttonDict['rightTrigger'] == 1:
-    #     bumperValue = 2
-    # if buttonDict['leftTrigger'] == 1 and buttonDict['rightTrigger'] == 1:
-    #     bumperValue = 0
 
-    print(buttonDict)
-
-    # out = [int(axisDict['X-Axis1']*124)+128, int(axisDict['Y-Axis1']*-124)+128,  
-    # int(bumperValue), int(buttonDict['rightTrigger']), int(buttonDict['leftTrigger'])]
-
-    # writePacket(out)
-    #print (axisDict['Y-Axis1']*124)+128, (axisDict['Y-Axis2']*124)+128, buttonDict['selectButton']
-    #print buttonDict['leftTrigger'], buttonDict['rightTrigger']
-    # if (s.inWaiting()>=5 and s.read()=='\xFF'):
-    #     print readPacket()
-    # pygame.time.wait(20)
