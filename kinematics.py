@@ -1,13 +1,10 @@
 import os
-offset = 90
-offset2 = 130
-offset3 = 40
 
 
 skDir="sketch"
 if not os.path.exists(skDir):
     os.makedirs(skDir)
-# ik_neutral=[512+offset, 512+offset2, 512-offset3, 512-offset, 512+offset2,512-offset3, 512+offset, 512+offset2, 512-offset3, 512-offset, 512+offset2, 512-offset3 ]
+
 ik_neutral=[652, 553, 462,1024-652, 553, 462,652, 553, 462,1024-652, 553, 462 ]
 signs="-+-++--+-++-"
 
