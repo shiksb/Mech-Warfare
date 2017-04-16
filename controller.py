@@ -131,7 +131,9 @@ if __name__ == "__main__":
 
     frame = Commander(None, ser, True)
 
-    while 1:
+    buttonDict = {"xButton":0}
+
+    while buttonDict["xButton"] != 1:
         axisDict = updateAxes()
         buttonDict = updateButtons()
         time.sleep(0.05);

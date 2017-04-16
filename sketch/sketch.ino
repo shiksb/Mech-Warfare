@@ -18,6 +18,7 @@ Commander command = Commander();
 int multiplier;
 
 void setup(){
+  
     pinMode(0,OUTPUT);
     // setup IK
     setupIK();
