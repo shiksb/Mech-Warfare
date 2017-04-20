@@ -33,7 +33,7 @@
 /* Legs */
 #define L_COXA      70  // MM distance from coxa servo to femur servo
 #define L_FEMUR     105 // MM distance from femur servo to tibia servo
-#define L_TIBIA     205 // MM distance from tibia servo to foot
+#define L_TIBIA     145 // MM distance from tibia servo to foot
 
 /* Servo IDs */
 #define RF_COXA 4

@@ -405,7 +405,7 @@ class NewProjectDialog(wx.Dialog):
         self.SetSizer(vbox)
 
 
-def main():
+if __name__ == "__main__" :
     print "PyPose starting... "
     app = wx.PySimpleApp()
     frame = editor()

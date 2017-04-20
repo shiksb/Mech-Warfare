@@ -5,8 +5,14 @@ skDir="sketch"
 if not os.path.exists(skDir):
     os.makedirs(skDir)
 
-ik_neutral=[652, 553, 462,1024-652, 553, 462,652, 553, 462,1024-652, 553, 462 ]
-signs="-+-++--+-++-"
+#offset = -100
+offset = 0
+mot1 = 652
+mot2 = 553	
+mot3 = 477
+# ik_neutral=[652, 553, 515+offset,1024-652, 553, 515+offset,652, 553, 515+offset,1024-652, 553, 515+offset]
+ik_neutral=[mot1, mot2, mot3+offset,1024-mot1, mot2, mot3+offset,mot1, mot2, mot3+offset,1024-mot1, mot2, mot3+offset]
+signs="-+++++-+++++"
 
 # map servo name to ID
 servoMap = dict()
@@ -29,7 +35,7 @@ params["legs"] = 4
 params["dof"] = 3
 params["@VAL_LCOXA"]     = 70
 params["@VAL_LFEMUR"]    = 105
-params["@VAL_LTIBIA"]    = 205
+params["@VAL_LTIBIA"]    = 145
 params["@VAL_XCOXA"]     = 89
 params["@VAL_YCOXA"]     = 89
 params["@VAL_MCOXA"]     = 50
@@ -43,10 +49,14 @@ params["@SERVO_MAXS"] = "int maxs[] = {"+str([768, 768, 768,768, 768, 768,768, 7
 
 
 # Simple Heuristics (TODO: Replace with a gait builder) 
-params["@X_STANCE"] = str(params["@VAL_LCOXA"]) 
-params["@Y_STANCE"] = str(params["@VAL_LCOXA"] + params["@VAL_LFEMUR"])
-params["@Z_STANCE"] = str(int(0.75*params["@VAL_LTIBIA"]))
-params["@LIFT_HEIGHT"] = str(int(0.2*params["@VAL_LTIBIA"]))
+# params["@X_STANCE"] = str(int(1.9*params["@VAL_LCOXA"])) # 1
+# params["@Y_STANCE"] = str(int(1.9*params["@VAL_LCOXA"]) + params["@VAL_LFEMUR"])
+# params["@Z_STANCE"] = str(int(0.3*params["@VAL_LTIBIA"])) # 0.75
+# params["@LIFT_HEIGHT"] = str(int(0.3*params["@VAL_LTIBIA"])) #0.2
+params["@X_STANCE"] = str(int(0.2*params["@VAL_LCOXA"])) # 1
+params["@Y_STANCE"] = str(int(0.2*params["@VAL_LCOXA"]) + params["@VAL_LFEMUR"])
+params["@Z_STANCE"] = str(int(0.4*params["@VAL_LTIBIA"])) # 0.75
+params["@LIFT_HEIGHT"] = str(int(0.4*params["@VAL_LTIBIA"])) #0.2
 # 10 or 12-bit?
 params["@RAD_TO_SERVO_RESOLUTION"] = str(100)
 
@@ -149,10 +159,5 @@ file = open(skDir + "/gaits.h", "w")
 file.write(fileText)
 file.close()
 
-
-
-
-
-
-
-
+os.startfile(str(os.getcwd()).replace("\\",'/') + "/sketch/sketch.ino")
+# os.startfile(str(os.getcwd()).replace("\\",'/') + "/sketch/sketch.ino")
