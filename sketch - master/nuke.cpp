@@ -32,23 +32,23 @@ float cycleTime;                // cycle time in seconds (adjustment from speed 
 
 /* Setup the starting positions of the legs. */
 void setupIK(){
-  endpoints[RIGHT_FRONT].x = 14;
-  endpoints[RIGHT_FRONT].y = 119;
-  endpoints[RIGHT_FRONT].z = 72;
+  endpoints[RIGHT_FRONT].x = 70;
+  endpoints[RIGHT_FRONT].y = 175;
+  endpoints[RIGHT_FRONT].z = 153;
 
-  endpoints[RIGHT_REAR].x = -14;
-  endpoints[RIGHT_REAR].y = 119;
-  endpoints[RIGHT_REAR].z = 72;
+  endpoints[RIGHT_REAR].x = -70;
+  endpoints[RIGHT_REAR].y = 175;
+  endpoints[RIGHT_REAR].z = 153;
 
-  endpoints[LEFT_FRONT].x = 14;
-  endpoints[LEFT_FRONT].y = -119;
-  endpoints[LEFT_FRONT].z = 72;
+  endpoints[LEFT_FRONT].x = 70;
+  endpoints[LEFT_FRONT].y = -175;
+  endpoints[LEFT_FRONT].z = 153;
 
-  endpoints[LEFT_REAR].x = -14;
-  endpoints[LEFT_REAR].y = -119;
-  endpoints[LEFT_REAR].z = 72;
+  endpoints[LEFT_REAR].x = -70;
+  endpoints[LEFT_REAR].y = -175;
+  endpoints[LEFT_REAR].z = 153;
 
-  liftHeight = 232;
+  liftHeight = 41;
   stepsInCycle = 1;
   step = 0;
 }
@@ -132,7 +132,7 @@ void doIK(){
         Serial.print("RF_FEMUR FAIL: ");
         Serial.println(servo);
     }
-    servo = 477 + sol.tibia;
+    servo = 415 - sol.tibia;
     if(servo < maxs[RF_TIBIA-1] && servo > mins[RF_TIBIA-1])
         bioloid.setNextPose(RF_TIBIA, servo);
     else{
@@ -158,7 +158,7 @@ void doIK(){
         Serial.print("RR_FEMUR FAIL: ");
         Serial.println(servo);
     }
-    servo = 477 + sol.tibia;
+    servo = 415 - sol.tibia;
     if(servo < maxs[RR_TIBIA-1] && servo > mins[RR_TIBIA-1])
         bioloid.setNextPose(RR_TIBIA, servo);
     else{
@@ -184,7 +184,7 @@ void doIK(){
         Serial.print("LF_FEMUR FAIL: ");
         Serial.println(servo);
     }
-    servo = 477 + sol.tibia;
+    servo = 415 - sol.tibia;
     if(servo < maxs[LF_TIBIA-1] && servo > mins[LF_TIBIA-1])
         bioloid.setNextPose(LF_TIBIA, servo);
     else{
@@ -210,7 +210,7 @@ void doIK(){
         Serial.print("LR_FEMUR FAIL: ");
         Serial.println(servo);
     }
-    servo = 477 + sol.tibia;
+    servo = 415 - sol.tibia;
     if(servo < maxs[LR_TIBIA-1] && servo > mins[LR_TIBIA-1])
         bioloid.setNextPose(LR_TIBIA, servo);
     else{
