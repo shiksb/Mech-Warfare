@@ -31,8 +31,8 @@ float voltage = 0;
 void setup(){   
     pinMode(0,OUTPUT); // LED
     pinMode(2, OUTPUT); // shooting control
-    pinMode(13, OUTPUT); // pin to cycle servo power
-    digitalWrite(13, LOW);
+    pinMode(3, OUTPUT); // pin to cycle servo power
+    digitalWrite(3, HIGH);
 
     // Sets motor positions
     SetPosition(13,512);
@@ -54,8 +54,8 @@ void setup(){
     Serial.print ("System Voltage: ");
     Serial.print (voltage);
     Serial.println (" volts.");
-    if (voltage < 10.0)
-        while(1);
+    // if (voltage < 10.0)
+    //     while(1);
 
     // stand up slowly
     bioloid.poseSize = @SERVO_COUNT;
@@ -92,11 +92,18 @@ void loop(){
     // bodyRotY = 0;
     // bodyRotZ = 0;
   // }
+    // set speeds
     Xspeed = multiplier*command.walkV;
-    if((command.buttons&BUT_LT) > 0)
-      Yspeed = (multiplier*command.walkH)/2;
+    if(command.leftBumper == 0)
+      {
+        Yspeed = (multiplier*command.walkH)/2;
+        Rspeed = 0;
+    }
     else
-      Rspeed = -(multiplier*command.walkH)/250.0;
+      {
+        Rspeed = -(multiplier*command.walkH)/250.0;
+        Yspeed = 0;
+      }
     
     // bodyRotY = (((float)command.lookV))/250.0;
     // if((command.buttons&BUT_RT) > 0)
@@ -104,6 +111,7 @@ void loop(){
     // else
     //   bodyRotZ = ((float)command.lookH)/250.0;
     }
+
 
   // 
   mil = millis();
@@ -120,7 +128,7 @@ void loop(){
     digitalWrite(0, LOW);
     digitalWrite(2, LOW);
   }
-
+  
 
   // maximum values for countV and countH
   turret_h_limit = 511;
@@ -137,12 +145,12 @@ void loop(){
 
 
   // move gun
-  if(command.leftBumper == 1){
+  if(command.leftTrigger == 1){
     if(logicV)
-      countV +=  (int) abs(command.lookV)/command.lookV;
+      countV +=  (int) command.lookV/50;
 
     if(logicH)
-      countH +=  (int) abs(command.lookH)/command.lookH;
+      countH +=  (int) command.lookH/50;
     
   } else {
     if(logicV)
@@ -177,11 +185,11 @@ void loop(){
   }
 
 
-  if(command.triangleButton == 1){
-    digitalWrite(13, HIGH);
-    while(command.triangleButton == 1){;}
-    digitalWrite(13, LOW);
-  }
+  if(command.triangleButton == 1)
+    digitalWrite(3, LOW);
+   else
+    digitalWrite(3, HIGH);
+  
 
 
 

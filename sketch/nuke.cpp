@@ -34,21 +34,21 @@ float cycleTime;                // cycle time in seconds (adjustment from speed 
 void setupIK(){
   endpoints[RIGHT_FRONT].x = 14;
   endpoints[RIGHT_FRONT].y = 119;
-  endpoints[RIGHT_FRONT].z = 58;
+  endpoints[RIGHT_FRONT].z = 72;
 
   endpoints[RIGHT_REAR].x = -14;
   endpoints[RIGHT_REAR].y = 119;
-  endpoints[RIGHT_REAR].z = 58;
+  endpoints[RIGHT_REAR].z = 72;
 
   endpoints[LEFT_FRONT].x = 14;
   endpoints[LEFT_FRONT].y = -119;
-  endpoints[LEFT_FRONT].z = 58;
+  endpoints[LEFT_FRONT].z = 72;
 
   endpoints[LEFT_REAR].x = -14;
   endpoints[LEFT_REAR].y = -119;
-  endpoints[LEFT_REAR].z = 58;
+  endpoints[LEFT_REAR].z = 72;
 
-  liftHeight = 58;
+  liftHeight = 232;
   stepsInCycle = 1;
   step = 0;
 }

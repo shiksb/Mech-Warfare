@@ -55,8 +55,8 @@ params["@SERVO_MAXS"] = "int maxs[] = {"+str([768, 768, 768,768, 768, 768,768, 7
 # params["@LIFT_HEIGHT"] = str(int(0.3*params["@VAL_LTIBIA"])) #0.2
 params["@X_STANCE"] = str(int(0.2*params["@VAL_LCOXA"])) # 1
 params["@Y_STANCE"] = str(int(0.2*params["@VAL_LCOXA"]) + params["@VAL_LFEMUR"])
-params["@Z_STANCE"] = str(int(0.4*params["@VAL_LTIBIA"])) # 0.75
-params["@LIFT_HEIGHT"] = str(int(0.4*params["@VAL_LTIBIA"])) #0.2
+params["@Z_STANCE"] = str(int(0.5*params["@VAL_LTIBIA"])) # 0.75
+params["@LIFT_HEIGHT"] = str(int(1.6*params["@VAL_LTIBIA"])) #0.2
 # 10 or 12-bit?
 params["@RAD_TO_SERVO_RESOLUTION"] = str(100)
 
@@ -160,4 +160,3 @@ file.write(fileText)
 file.close()
 
 os.startfile(str(os.getcwd()).replace("\\",'/') + "/sketch/sketch.ino")
-# os.startfile(str(os.getcwd()).replace("\\",'/') + "/sketch/sketch.ino")
